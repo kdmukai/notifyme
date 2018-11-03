@@ -39,12 +39,11 @@ if __name__ == "__main__":
         region_name="us-east-1"     # N. Virginia
     )
 
+    print("Started")
 
     for line in sys.stdin:
         if target_phrase in line:
-            print("TARGET PHRASE! %s" % line)
+            sys.stdout.write("TARGET PHRASE! %s" % line)
             msg = line[line.index(target_phrase):]
             sns.publish(Message="%s: %s" % (host, msg), TopicArn=sns_topic)
-        else:
-            sys.stdout.write(line)
 
