@@ -11,7 +11,7 @@ parser.add_argument(dest="target_phrase",
                     help="input in quotes")
 
 parser.add_argument('-c', '--settings',
-                    default="conf/settings_local.conf",
+                    default="settings.conf",
                     dest="settings_config",
                     help="Override default settings config file location")
 
