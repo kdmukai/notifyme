@@ -4,6 +4,7 @@ A simple script to watch for a specific phrase in a logfile and send an AWS SNS 
 
 ## Installation
 - Create a virtualenv (out of scope for this doc)
+- `pip install -r requirements.txt`
 - `cp settings_example.conf settings.conf`
 - Customize `settings.conf`
 
