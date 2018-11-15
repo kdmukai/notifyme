@@ -5,10 +5,15 @@ import sys
 import boto3
 
 
-parser = argparse.ArgumentParser(description='Crypto Simple Trading Bot')
+parser = argparse.ArgumentParser(description='notifyme.py -- A simple SNS notification script')
 
 parser.add_argument(dest="target_phrase",
                     help="input in quotes")
+
+parser.add_argument('-n', '--note',
+                    default="",
+                    dest="note",
+                    help="Note to include with notification")
 
 parser.add_argument('-c', '--settings',
                     default="settings.conf",
@@ -24,6 +29,7 @@ if __name__ == "__main__":
     arg_config.read(args.settings_config)
 
     target_phrase = args.target_phrase
+    note = args.note
 
     host = arg_config.get('LOCAL', 'HOST')
 
@@ -39,11 +45,11 @@ if __name__ == "__main__":
         region_name="us-east-1"     # N. Virginia
     )
 
-    print("Started")
-
     for line in sys.stdin:
         if target_phrase in line:
             sys.stdout.write("TARGET PHRASE! %s" % line)
             msg = line[line.index(target_phrase):]
+            if note:
+                msg = "%s: %s" % (note, msg)
             sns.publish(Message="%s: %s" % (host, msg), TopicArn=sns_topic)
 
