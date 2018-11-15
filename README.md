@@ -25,6 +25,16 @@ Pipe any `stdout` into `notifyme.py` and pass the watch phrase as an input arg:
 tail -f path/to/my/logfile.log | path/to/my/virtualenv/bin/python notifyme.py "Found block"
 ```
 
+You can also add an optional note to prepend to your notification message:
+```
+tail -f path/to/my/logfile.log | path/to/my/virtualenv/bin/python notifyme.py "Found block" --note "Nerva"
+```
+
+Which yield a notification like:
+```
+MyServer: Nerva: Found block at height 123456
+```
+
 ## With `supervisord`
 Assuming you already have `supervisord` running, here's an example `/etc/supervisor/conf.d/notifyme.conf`. 
 The only noteworthy line is the `command` specification:
