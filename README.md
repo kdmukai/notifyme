@@ -10,7 +10,7 @@ A simple script to watch for a specific phrase in a logfile and send an AWS SNS 
 
   ```
   [LOCAL]
-  HOST = My Server Name
+  HOST = MyServer
 
   [AWS]
   SNS_TOPIC = arn:aws:sns:us-east-1:123412341234:mytopic
@@ -30,7 +30,7 @@ You can also add an optional note to prepend to your notification message:
 tail -f path/to/my/logfile.log | path/to/my/virtualenv/bin/python notifyme.py "Found block" --note "Nerva"
 ```
 
-Which yield a notification like:
+Which would yield a notification like:
 ```
 MyServer: Nerva: Found block at height 123456
 ```
